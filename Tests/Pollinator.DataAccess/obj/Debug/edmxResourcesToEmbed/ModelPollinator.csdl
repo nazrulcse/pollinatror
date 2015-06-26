@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PollinatorModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PollinatorEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="PollinatorSizes" EntityType="PollinatorModel.PollinatorSize" />
+    <EntitySet Name="PollinatorTypes" EntityType="PollinatorModel.PollinatorType" />
+    <EntitySet Name="Sponsors" EntityType="PollinatorModel.Sponsor" />
+    <EntitySet Name="PaymentInformations" EntityType="PollinatorModel.PaymentInformation" />
+    <EntitySet Name="Countries" EntityType="PollinatorModel.Country" />
+    <EntitySet Name="TempUserPayments" EntityType="PollinatorModel.TempUserPayment" />
+    <EntitySet Name="UserDetails" EntityType="PollinatorModel.UserDetail" />
+    <EntitySet Name="Memberships" EntityType="PollinatorModel.Membership" />
+    <EntitySet Name="PolinatorInformations" EntityType="PollinatorModel.PolinatorInformation" />
+    <AssociationSet Name="FK_PolinatorInformation_PollinatorSize" Association="PollinatorModel.FK_PolinatorInformation_PollinatorSize">
+      <End Role="PollinatorSize" EntitySet="PollinatorSizes" />
+      <End Role="PolinatorInformation" EntitySet="PolinatorInformations" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="PollinatorModel.User" />
+    <AssociationSet Name="MembershipUser" Association="PollinatorModel.MembershipUser">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Membership" EntitySet="Memberships" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PollinatorSize">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PolinatorInformations" Relationship="PollinatorModel.FK_PolinatorInformation_PollinatorSize" FromRole="PollinatorSize" ToRole="PolinatorInformation" />
+  </EntityType>
+  <EntityType Name="PollinatorType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sponsor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PhotoUrl" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentInformation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="txn_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="pay_stat" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="user_email" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="custom" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="InitialInfoSentByPayPal" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="StrResponse" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreateDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SortOder" />
+  </EntityType>
+  <EntityType Name="TempUserPayment">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="Byte" Name="MembershipLevel" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhoneNumber" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OrganizationName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PollinatorSize" Nullable="false" />
+    <Property Type="String" Name="LandscapeStreet" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LandscapeCity" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LandscapeState" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LandscapeZipcode" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LandscapeCountry" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhotoUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="YoutubeUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PollinatorType" Nullable="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingAddress" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingCity" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingState" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingZipcode" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PaymentFullName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PaymentAddress" MaxLength="130" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PaymentState" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PaymentCardNumber" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="Latitude" Precision="18" Scale="15" />
+    <Property Type="Decimal" Name="Longitude" Precision="18" Scale="15" />
+    <Property Type="String" Name="UserFolder" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreateDate" Precision="3" />
+    <Property Type="Int32" Name="CreateProcess" />
+    <Property Type="String" Name="PaypalFormHtmlStr" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="OrganizationName_PollinatorInfomation" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="Byte" Name="MembershipLevel" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PhoneNumber" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OrganizationName" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PasswordFormat" Nullable="false" />
+    <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordQuestion" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordAnswer" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+    <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="LastLoginDate" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="FailedPasswordAttemptCount" Nullable="false" />
+    <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount" Nullable="false" />
+    <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowsStart" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Comment" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="PollinatorModel.MembershipUser" FromRole="Membership" ToRole="User" />
+  </EntityType>
+  <EntityType Name="PolinatorInformation">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="Boolean" Name="IsApproved" />
+    <Property Type="Boolean" Name="IsPaid" />
+    <Property Type="Boolean" Name="IsNew" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+    <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+    <Property Type="DateTime" Name="PaidDate" Precision="3" />
+    <Property Type="DateTime" Name="ExpireDate" Precision="3" />
+    <Property Type="String" Name="OrganizationName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PollinatorSize" Nullable="false" />
+    <Property Type="String" Name="LandscapeStreet" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LandscapeCity" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LandscapeState" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LandscapeZipcode" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LandscapeCountry" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PhotoUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="YoutubeUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PollinatorType" Nullable="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingAddress" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingCity" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingState" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BillingZipcode" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PaymentFullName" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PaymentAddress" MaxLength="130" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PaymentState" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PaymentCardNumber" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="Latitude" Precision="18" Scale="15" />
+    <Property Type="Decimal" Name="Longitude" Precision="18" Scale="15" />
+    <Property Type="String" Name="UserFolder" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="FuzyLocation" />
+    <Property Type="String" Name="SourceData" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PollinatorSize1" Relationship="PollinatorModel.FK_PolinatorInformation_PollinatorSize" FromRole="PolinatorInformation" ToRole="PollinatorSize" />
+  </EntityType>
+  <Association Name="FK_PolinatorInformation_PollinatorSize">
+    <End Type="PollinatorModel.PollinatorSize" Role="PollinatorSize" Multiplicity="1" />
+    <End Type="PollinatorModel.PolinatorInformation" Role="PolinatorInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PollinatorSize">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PolinatorInformation">
+        <PropertyRef Name="PollinatorSize" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsAnonymous" Nullable="false" />
+    <Property Type="DateTime" Name="LastActivityDate" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Membership" Relationship="PollinatorModel.MembershipUser" FromRole="User" ToRole="Membership" />
+  </EntityType>
+  <Association Name="MembershipUser">
+    <End Type="PollinatorModel.User" Role="User" Multiplicity="1" />
+    <End Type="PollinatorModel.Membership" Role="Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

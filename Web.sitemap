@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/" title="Root" description="Root">
+    <!--http://www.pollinator.org/-->
+    <siteMapNode url="~/External/SHARE.htm" title="S.H.A.R.E"  />
+    <siteMapNode url="~/ShareMap" title="Get on the Map"  />
+    <siteMapNode url="~/External/SHARE_profile_NCTC.htm" title="Featured Habitat"  />        
+    <siteMapNode url="~/External/SHARE_sign.htm" title="Get a Sign" />
+    <siteMapNode url="~/External/SHARE_tools.htm" title="Tool"  />   
+    <siteMapNode url="~/Externalhttp://millionpollinatorgardens.org/" title="MPGC"  />   
+    <siteMapNode url="~/External/SHARE_howto.htm" title="How to SHARE"  />   
+
+   
+    <!--<siteMapNode url="~/About" title="About Us"  description="About US" />
+    <siteMapNode url="~/Contact" title="Contact Us"  description="Contact US" />-->
+    <siteMapNode url="" title="Admin" description="For Administrator only"  roles="Administrator">
+      <!-- the sub menus-->
+      <siteMapNode url ="~/Admin/Users" title =" Users" description ="Manage Users and Pollinator Information" imageUrl="Images/icon/Users24.png"/>
+      <siteMapNode url ="~/Admin/ImportData" title =" Import Data" description ="Import Pollinator Data" imageUrl="Images/icon/import-icon.png"/>
+      <siteMapNode url ="~/Admin/ExportData" title =" Export Data" description ="Export Pollinator Data" imageUrl="Images/icon/export_icon.png"/>
+      <siteMapNode url ="~/Admin/SponsorList" title =" Sponsor Information" description ="Manage Sponsor Information" imageUrl="Images/icon/globe-icon.png"/>
+      <siteMapNode url ="~/Admin/ChangePassword" title =" Change Password" description ="Change Your Password" imageUrl="Images/icon/account.change.password.png" />
+      <!--end sub menus-->
+    </siteMapNode>
+  
+    <!--Members-->
+    <siteMapNode url ="" title ="Change Information" description ="Change personal/general and pollinator information"   roles="Members" >
+      <siteMapNode url ="~/Members/Manage" title ="User Information" description ="Change personal/general and pollinator information"  />
+      <siteMapNode url ="~/Members/ChangePassword" title ="Change Password" description ="Change Your Password" />
+    </siteMapNode>
+    
+  </siteMapNode>
+</siteMap>
+
+

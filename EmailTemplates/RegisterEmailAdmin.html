@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div style="width: 550px;">
+        <img src="{SiteLogo}" /><br /><br />
+
+        <div>
+			Hi {AdminName}
+            <br /><br />
+            <div>
+                <div>
+					This is a reminder that there is a new user register. Please <a href="{LogonLink}">sign in</a> Pollinator Partnership to approve new pollinator information. 
+					<br /><br />
+					This is a <strong>{UserType}</strong> user. Below is the further information: <br /><br />
+					<table>
+						<tr>
+							<td>Name:</td>
+							<td>{RegisterName}</td>
+						</tr>
+						<tr>
+							<td>Organization:</td>
+							<td>{OrganizationName}</td>
+						</tr>
+						<tr>
+							<td>Phone Number:</td>
+							<td>{PhoneNumber}</td>
+						</tr>
+						<tr>
+							<td>Landscape Street:</td>
+							<td>{LandscapeStreet}</td>
+						</tr>
+						<tr>
+							<td>Landscape City:</td>
+							<td>{LandscapeCity}</td>
+						</tr>
+						<tr>
+							<td>Landscape State:</td>
+							<td>{LandscapeState}</td>
+						</tr>
+						<tr>
+							<td>Landscape Zipcode:</td>
+							<td>{LandscapeZipcode}</td>
+						</tr>
+						<tr>
+							<td>Your pollinator habitat size:</td>
+							<td>{PollinatorSize}</td>
+						</tr>
+						<tr>
+							<td>Your pollinator habitat type:</td>
+							<td>{PollinatorType}</td>
+						</tr>
+					</table>
+				 </div>
+				<br />
+				<a href="{PollinatorLink}"><strong>Click Here to view this new register</strong></a>.<br /><br />
+				If you want to see all the registers, click <a href="{UserListLink}"><strong>Here</strong></a><br />
+				<br />
+				Thank you,<br />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

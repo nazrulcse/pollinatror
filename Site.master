@@ -1,0 +1,340 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<%@ Register Src="Controls/Login.ascx" TagName="Login" TagPrefix="uc1" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head runat="server">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <title>SHARE - Get on the Map Today!</title>
+
+    <%--<link href="/Images/favicon.gif" rel="shortcut icon" type='image/x-icon' /> --%>
+    <asp:PlaceHolder runat="server" ID="favicon"></asp:PlaceHolder>
+
+    <%--<meta property="og:image" content="Images/Bee_Friendly_Farmer_Logo.png" />--%>
+    <asp:PlaceHolder runat="server" ID="megaTags"></asp:PlaceHolder>
+
+    <asp:PlaceHolder runat="server">
+        <%=Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+ 
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/css" />
+    <link href="http://www.pollinator.org/newweb/P2/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="http://www.pollinator.org/newweb/P2/css/style.css" rel="stylesheet" type="text/css">
+    <link href="http://www.pollinator.org/newweb/P2/colors/color3.css" rel="stylesheet" type="text/css">    
+
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <div style="display: none;" id="paypal_container"></div>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+                <%--Framework scripts--%>   
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />  
+                <asp:ScriptReference Name="MsAjaxBundle" />            
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!--iCheck plugin  Source: http://fronteed.com/iCheck/ -->
+
+        <link href="<%= ResolveUrl("~/Scripts/iCheck/skins/all.css") %>" rel="stylesheet" />
+        <script src="<%= ResolveUrl("~/Scripts/iCheck/js/icheck.js") %>"></script>
+
+        <style type="text/css">
+            .icheckbox_square-blue
+            {
+                vertical-align: top;
+                margin-right: 3px;
+                margin-top: 3px;
+            }
+
+            /*Chrome placeholder style*/
+            ::-webkit-input-placeholder
+            {
+                color: GrayText;
+                font-style: italic;
+                font-weight: 100;
+                text-shadow: 0 0 2px #eaeaea;
+            }
+            /*IE*/
+            :-ms-input-placeholder
+            {
+                color: GrayText;
+                font-style: italic;
+                font-weight: 100;
+                text-shadow: 0 0 2px #eaeaea;
+            }
+            /*FF*/
+            ::-moz-placeholder
+            {
+                font-style: italic;
+                font-weight: 100;
+                text-shadow: 0 0 2px #eaeaea;
+            }
+            /* firefox 19+ */
+            input:-moz-placeholder
+            {
+                font-style: italic;
+                font-weight: 100;
+                text-shadow: 0 0 2px #eaeaea;
+            }
+        </style>
+
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function () {
+                $('.flat-checkbox').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%'
+                });
+
+                //change link of Menu
+                $("#MenuMain1 ul").addClass("nav");
+                $("#MenuMain1 ul").addClass("nav-pills");
+                $("#MenuMain1 ul>li:first").addClass("active");
+                $("#MenuMain1 ul>li:first>a").html('<i class="fa fa-th"></i> S.H.A.R.E');
+              
+                $("a[href='#MenuMain1_SkipLink']").css("display", "none");
+
+                $("#MenuMain1 a[href*='/Externalhttp']").each(function () {
+                    console.log("dfdf:" + $(this).attr("href"));
+                    var hrefValue = "http://millionpollinatorgardens.org/";
+                    $(this).attr('href', hrefValue);
+                    $(this).attr('target', '_blank');
+                });
+                $("#MenuMain1 a[href*='/External/']").each(function () {                 
+                    var hrefValue = $(this).attr("href").replace('/External/', 'http://www.pollinator.org/')
+                    $(this).attr('href', hrefValue);
+                    $(this).attr('target', '_blank');
+                });
+                $("#MenuMain1 a:contains('Change Information')").each(function () {
+                    $(this).css('color', '#ffd91a');
+                    $(this).attr('href', '/Members/Manage.aspx');
+
+                });
+
+                $("#MenuMain1 a:contains('Admin')").each(function () {
+                    $(this).css('color', '#ffd91a');
+
+                });
+
+                //console.log("clientUrl:" + document.referrer);
+               // var clientUrl = window.top.location.href;
+                //console.log("clientUrl:" + clientUrl);
+               // $('meta[property="og:url"]').attr('content', clientUrl);
+                // alert($('meta[property="og:url"]').attr('content'));
+              /*  var clientUrl = document.referrer;
+                if (clientUrl != "") {
+                    console.log("clientUrl:" + clientUrl);
+                    $('meta[property="og:url"]').attr('content', clientUrl);
+                    alert($('meta[property="og:url"]').attr('content'));
+                }*/
+            });
+        </script>
+        <!--EDN of iCheck plugin-->
+
+
+        <div id="mainsection">
+            <header class="site-header">
+                 <div class="top-header hidden-xs">
+        	        <div class="containerbt">
+            	        <div class="rowbt">
+                	        <div class="col-md-6">
+                            <div class="upcoming-event-bar">
+                        	        <h4><i class="fa fa-calendar"></i>&nbsp;Pollinator Week</h4>
+                                    <div id="counter" class="counter" data-date="June 15, 2015">
+                         		        <div class="timer-col"> <span id="days"></span> <span class="timer-type">d</span> </div>
+                        		        <div class="timer-col"> <span id="hours"></span> <span class="timer-type">h</span> </div>
+                      			        <div class="timer-col"> <span id="minutes"></span> <span class="timer-type">m</span> </div>
+                         		        <div class="timer-col"> <span id="seconds"></span> <span class="timer-type">s</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                    	        <ul class="top-menu">
+                        	        <li><a href="donate.html">Donate Now</a></li>
+                        	        <li class="secondary"><a href="join.html">Join Us</a></li>
+                                </ul>
+                    	        <ul class="social-links social-links-lighter">
+                        	        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                        	        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                        	        <li><a href="#"><i class="fa fa-youtube-square"></i></a></li>
+                        	        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                              </ul>
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>
+           	        </div>
+       	        </div>      
+                 
+                 <div class="lower-header">
+        	        <div class="containerbt for-navi">
+             	        <h1 class="logo">
+                	        <a href="http://pollinator.org"><img src="<%=ResolveUrl("~/Images/PollinatorLogo-Tagline.jpg")%>" alt="Site Logo"></a>
+             	        </h1>
+              	       
+                        <nav class="main-navigation">
+                  	        <ul class="sf-menu">
+                   		        <li >
+                                    <a href="http://www.pollinator.org/about.htm" >Who We Are 
+                                    </a>
+                     		        <ul >
+                       		          <li><a href="http://www.pollinator.org/mission.htm">Mission </a></li>
+                                        <li><a href="http://www.pollinator.org/about.htm">People</a></li>
+                                        <li><a href="http://www.pollinator.org/partners.htm">Partners</a></li>
+                                        <li><a href="http://www.pollinator.org/wherewework.htm">Where We Work</a></li>
+                                        <li><a href="http://www.pollinator.org/projects.htm">Projects</a></li>
+                                        <li><a href="http://www.pollinator.org/nappc.htm">NAPPC</a></li>
+                                        <li><a href="http://www.pollinator.org/pollination.htm">What Are Pollinators?</a></li>
+                                        <li><a href="http://www.pollinator.org/SHARE.htm">SHARE</a></li>
+                       	            </ul>
+                   	            </li>
+                                <li><a href="http://www.pollinator.org/projects.htm">Our Programs</a>
+                                </li>
+
+                                <li><a href="http://www.pollinator.org/guides.htm">Planting Guides</a>                            
+                                </li>
+
+                                <li><a href="http://www.pollinator.org/takeaction.htm">Get Involved</a>                            
+                                </li>
+
+                                <li class="megamenu"><a href="http://www.pollinator.org/usefulresources.htm">Learning Center</a>
+                                 </li>
+                        
+                                <li><a href="http://www.pollinator.org/shop.htm">Store</a></li>
+                            </ul>
+                        </nav>
+
+        	        </div>
+                  </div>                       
+            </header>
+
+            <div style="font-size: 12px; margin-top: 140px; z-index: 10; margin-right: 135px; padding-top: 0px" class="float-right">
+
+                <asp:LoginView ID="LoginView2" runat="server" ViewStateMode="Disabled">
+                    <LoggedInTemplate>
+                        <span style="color: green;">Hello, <a id="A2" runat="server" class="username" href="~/Members/Manage" title="Manage your account">
+                            <asp:LoginName runat="server" ID="loginName" CssClass="username" />
+                            !</a>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Sign Out" LogoutPageUrl="~/" Style="font-weight: bold; color: #058D0D" />
+                            <br />
+                            <a runat="server" id="aPreSince" style="background-color: initial; color: green;"></a>
+                        </span>
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+
+            <div class="page-header">
+            </div>
+            <div class="double-border"></div>
+            <!-- Secondary Header -->
+            <div class="secondary-bar">
+
+                <div class="containerbt">
+                    <div class="rowbt clear-fix" style="margin-right:-50px">
+                        <div class="col-md-10">
+
+                            <asp:Menu ID="MenuMain1" runat="server" DataSourceID="SiteMapDataSource1" StaticSubMenuIndent="10px"
+                                EnableViewState="False" Orientation="Horizontal" StaticEnableDefaultPopOutImage="false" OnMenuItemDataBound="MenuMain1_MenuItemDataBound">
+                                <DynamicHoverStyle></DynamicHoverStyle>
+                                <DynamicMenuItemStyle></DynamicMenuItemStyle>
+                                <DynamicMenuStyle></DynamicMenuStyle>
+                                <StaticHoverStyle></StaticHoverStyle>
+                                <StaticMenuItemStyle></StaticMenuItemStyle>
+                                <StaticSelectedStyle></StaticSelectedStyle>
+                            </asp:Menu>
+                            <asp:SiteMapDataSource runat="server" ID="SiteMapDataSource1" ShowStartingNode="false"></asp:SiteMapDataSource>
+                        </div>
+                        <div class="col-md-2" style="text-align:right;padding-top:8px">
+                            <asp:LoginView ID="LoginView3" runat="server" ViewStateMode="Disabled">
+                                <AnonymousTemplate>
+                                    <a id="A3" onclick="setFirstFocus();" href="#login_form" style="font-weight: bold; color: #ffd91a">Sign In</a>
+                                </AnonymousTemplate>
+                            </asp:LoginView>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <div id="body">
+                <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                <section class="clear-fix">
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                </section>
+            </div>
+
+
+            <!-- Start Footer -->
+            <footer class="site-footer site-top-footer" style="margin: 0px">
+    	        <div class="container">
+       	          <div class="row">
+            	        <div class="col-md-3 col-sm-6 footer-widget widget text_widget">
+                	        <h4 class="widgettitle">Pollinator Partnership</h4>
+                             <p style="font-size:14.5px">A non-profit 501(c)3 organization-- the largest in the world dedicated exclusively to the protection and promotion of pollinators and their ecosystems.</p>
+                        </div>
+            	        <div class="col-md-3 col-sm-6 footer-widget widget instafeed_widget">
+                	
+                        </div>
+           	        <div class="col-md-3 col-sm-6 footer-widget widget twitter_widget">
+                	        <h4 class="widgettitle">Twitter Feeds</h4>
+                            <div class="twitter-widget" data-tweets-count="1">
+                  </div>
+                      </div>
+           	          <div class="col-md-3 col-sm-6 footer-widget widget text_widget">
+               	          <h4 class="widgettitle">Our Location</h4>
+                          <p style="font-size:14.5px">423 Washington Street, 5th Floor<br>San Francisco, CA, 94111</p>
+				           <p style="font-size:14.5px"><span style="font-weight:700;font-size:15px">Contact</span><br><a href="mailto:info@pollinator.org">info@pollinator.org</a><br>1 (415) 362-1137</pstyle="font-size:14px>
+                      </div>
+                    </div>
+                </div>
+            </footer>
+
+            <footer class="site-footer site-bottom-footer" style="margin: 0px">
+    	        <div class="containerbt">
+        	        <div class="rowbt" style="height:23px">
+            	        <div class="col-md-4 col-sm-4">
+                	        <p>&copy; 1996-2015 Pollinator Partnership</p>
+                        </div>
+            	        <div class="col-md-8 col-sm-8">
+                	        <ul class="footer-nav">
+                    	        <li><a href="http://pollinator.org">Home</a></li>
+                    	        <li><a href="http://pollinator.org/about.htm">About</a></li>
+                    	        <li><a href="http://pollinator.org/research_consulting.htm">Science and Consulting</a></li>
+                    	        <li><a href="http://pollinator.org/donate.htm">Donate</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Footer -->
+
+            <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+            <script type="text/javascript" src="http://www.pollinator.org/P2/js/helper-plugins.js"></script> <!-- Helper Plugins -->
+            <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/init.js") %>"></script>
+            <script type="text/javascript" src="http://www.pollinator.org/P2/js/bootstrap.js"></script>
+            <script type="text/javascript" src="http://www.pollinator.org/P2/vendor/countdown/js/jquery.countdown.min.js"></script> <!-- Jquery Timer -->
+        </div>
+
+        <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+
+            <AnonymousTemplate>
+                <uc1:Login ID="Login1" runat="server" />
+            </AnonymousTemplate>
+
+        </asp:LoginView>
+    </form>
+
+</body>
+
+</html>

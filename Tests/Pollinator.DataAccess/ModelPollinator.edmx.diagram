@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="54775f653e6f42e491311829dfc96c4b" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="PollinatorModel.PollinatorSize" Width="1.5" PointX="2.75" PointY="1" />
+        <EntityTypeShape EntityType="PollinatorModel.PollinatorType" Width="1.5" PointX="1.125" PointY="1" />
+        <EntityTypeShape EntityType="PollinatorModel.Sponsor" Width="1.5" PointX="1.125" PointY="2.5" />
+        <EntityTypeShape EntityType="PollinatorModel.PaymentInformation" Width="2.875" PointX="2.875" PointY="5.25" />
+        <EntityTypeShape EntityType="PollinatorModel.Country" Width="1.5" PointX="1.125" PointY="4.875" />
+        <EntityTypeShape EntityType="PollinatorModel.TempUserPayment" Width="1.5" PointX="10.375" PointY="0.5" />
+        <EntityTypeShape EntityType="PollinatorModel.UserDetail" Width="1.5" PointX="8.75" PointY="0.5" />
+        <EntityTypeShape EntityType="PollinatorModel.Membership" Width="1.5" PointX="7.8763177059014886" PointY="29.821896835147356" />
+        <EntityTypeShape EntityType="PollinatorModel.PolinatorInformation" Width="1.5" PointX="6.875" PointY="0.5" />
+        <AssociationConnector Association="PollinatorModel.FK_PolinatorInformation_PollinatorSize" />
+        <EntityTypeShape EntityType="PollinatorModel.User" Width="1.5" PointX="4.4307542110005187" PointY="21.102854827932479" />
+        <AssociationConnector Association="PollinatorModel.MembershipUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

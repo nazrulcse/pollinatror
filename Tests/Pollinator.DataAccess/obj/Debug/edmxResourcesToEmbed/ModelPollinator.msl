@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PollinatorModelStoreContainer" CdmEntityContainer="PollinatorEntities">
+    <EntitySetMapping Name="PollinatorSizes">
+      <EntityTypeMapping TypeName="PollinatorModel.PollinatorSize">
+        <MappingFragment StoreEntitySet="PollinatorSize">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PollinatorTypes">
+      <EntityTypeMapping TypeName="PollinatorModel.PollinatorType">
+        <MappingFragment StoreEntitySet="PollinatorType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sponsors">
+      <EntityTypeMapping TypeName="PollinatorModel.Sponsor">
+        <MappingFragment StoreEntitySet="Sponsor">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentInformations">
+      <EntityTypeMapping TypeName="PollinatorModel.PaymentInformation">
+        <MappingFragment StoreEntitySet="PaymentInformation">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="StrResponse" ColumnName="StrResponse" />
+          <ScalarProperty Name="InitialInfoSentByPayPal" ColumnName="InitialInfoSentByPayPal" />
+          <ScalarProperty Name="custom" ColumnName="custom" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="pay_stat" ColumnName="pay_stat" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="txn_id" ColumnName="txn_id" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="PollinatorModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="SortOder" ColumnName="SortOder" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TempUserPayments">
+      <EntityTypeMapping TypeName="PollinatorModel.TempUserPayment">
+        <MappingFragment StoreEntitySet="TempUserPayment">
+          <ScalarProperty Name="OrganizationName_PollinatorInfomation" ColumnName="OrganizationName_PollinatorInfomation" />
+          <ScalarProperty Name="PaypalFormHtmlStr" ColumnName="PaypalFormHtmlStr" />
+          <ScalarProperty Name="CreateProcess" ColumnName="CreateProcess" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserFolder" ColumnName="UserFolder" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="PaymentCardNumber" ColumnName="PaymentCardNumber" />
+          <ScalarProperty Name="PaymentState" ColumnName="PaymentState" />
+          <ScalarProperty Name="PaymentAddress" ColumnName="PaymentAddress" />
+          <ScalarProperty Name="PaymentFullName" ColumnName="PaymentFullName" />
+          <ScalarProperty Name="BillingZipcode" ColumnName="BillingZipcode" />
+          <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+          <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PollinatorType" ColumnName="PollinatorType" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="YoutubeUrl" ColumnName="YoutubeUrl" />
+          <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+          <ScalarProperty Name="LandscapeCountry" ColumnName="LandscapeCountry" />
+          <ScalarProperty Name="LandscapeZipcode" ColumnName="LandscapeZipcode" />
+          <ScalarProperty Name="LandscapeState" ColumnName="LandscapeState" />
+          <ScalarProperty Name="LandscapeCity" ColumnName="LandscapeCity" />
+          <ScalarProperty Name="LandscapeStreet" ColumnName="LandscapeStreet" />
+          <ScalarProperty Name="PollinatorSize" ColumnName="PollinatorSize" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MembershipLevel" ColumnName="MembershipLevel" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="PollinatorModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetail">
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MembershipLevel" ColumnName="MembershipLevel" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Memberships">
+      <EntityTypeMapping TypeName="PollinatorModel.Membership">
+        <MappingFragment StoreEntitySet="Memberships">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+          <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolinatorInformations">
+      <EntityTypeMapping TypeName="PollinatorModel.PolinatorInformation">
+        <MappingFragment StoreEntitySet="PolinatorInformation">
+          <ScalarProperty Name="SourceData" ColumnName="SourceData" />
+          <ScalarProperty Name="FuzyLocation" ColumnName="FuzyLocation" />
+          <ScalarProperty Name="UserFolder" ColumnName="UserFolder" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="PaymentCardNumber" ColumnName="PaymentCardNumber" />
+          <ScalarProperty Name="PaymentState" ColumnName="PaymentState" />
+          <ScalarProperty Name="PaymentAddress" ColumnName="PaymentAddress" />
+          <ScalarProperty Name="PaymentFullName" ColumnName="PaymentFullName" />
+          <ScalarProperty Name="BillingZipcode" ColumnName="BillingZipcode" />
+          <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+          <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PollinatorType" ColumnName="PollinatorType" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="YoutubeUrl" ColumnName="YoutubeUrl" />
+          <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+          <ScalarProperty Name="LandscapeCountry" ColumnName="LandscapeCountry" />
+          <ScalarProperty Name="LandscapeZipcode" ColumnName="LandscapeZipcode" />
+          <ScalarProperty Name="LandscapeState" ColumnName="LandscapeState" />
+          <ScalarProperty Name="LandscapeCity" ColumnName="LandscapeCity" />
+          <ScalarProperty Name="LandscapeStreet" ColumnName="LandscapeStreet" />
+          <ScalarProperty Name="PollinatorSize" ColumnName="PollinatorSize" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PollinatorModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

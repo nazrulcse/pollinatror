@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PollinatorModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PollinatorModelStoreContainer">
+    <EntitySet Name="Country" EntityType="PollinatorModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Memberships" EntityType="PollinatorModel.Store.Memberships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PaymentInformation" EntityType="PollinatorModel.Store.PaymentInformation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PolinatorInformation" EntityType="PollinatorModel.Store.PolinatorInformation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PollinatorSize" EntityType="PollinatorModel.Store.PollinatorSize" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PollinatorType" EntityType="PollinatorModel.Store.PollinatorType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sponsor" EntityType="PollinatorModel.Store.Sponsor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TempUserPayment" EntityType="PollinatorModel.Store.TempUserPayment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserDetail" EntityType="PollinatorModel.Store.UserDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="PollinatorModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_PolinatorInformation_PollinatorSize" Association="PollinatorModel.Store.FK_PolinatorInformation_PollinatorSize">
+      <End Role="PollinatorSize" EntitySet="PollinatorSize" />
+      <End Role="PolinatorInformation" EntitySet="PolinatorInformation" />
+    </AssociationSet>
+    <AssociationSet Name="MembershipUser" Association="PollinatorModel.Store.MembershipUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Memberships" EntitySet="Memberships" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="SortOder" Type="int" />
+  </EntityType>
+  <EntityType Name="Memberships">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordFormat" Type="int" Nullable="false" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+    <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="PaymentInformation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="txn_id" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="pay_stat" Type="varchar" MaxLength="50" />
+    <Property Name="user_email" Type="varchar" MaxLength="256" />
+    <Property Name="custom" Type="varchar(max)" />
+    <Property Name="InitialInfoSentByPayPal" Type="varchar(max)" />
+    <Property Name="StrResponse" Type="varchar" MaxLength="255" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PolinatorInformation">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="IsPaid" Type="bit" />
+    <Property Name="IsNew" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="LastUpdated" Type="datetime" />
+    <Property Name="PaidDate" Type="datetime" />
+    <Property Name="ExpireDate" Type="datetime" />
+    <Property Name="OrganizationName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PollinatorSize" Type="int" Nullable="false" />
+    <Property Name="LandscapeStreet" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LandscapeCity" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LandscapeState" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LandscapeZipcode" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="LandscapeCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhotoUrl" Type="nvarchar(max)" />
+    <Property Name="YoutubeUrl" Type="nvarchar(max)" />
+    <Property Name="Website" Type="varchar" MaxLength="255" />
+    <Property Name="PollinatorType" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="BillingAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="BillingCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillingState" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillingZipcode" Type="varchar" MaxLength="10" />
+    <Property Name="PaymentFullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="PaymentAddress" Type="nvarchar" MaxLength="130" />
+    <Property Name="PaymentState" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCardNumber" Type="varchar" MaxLength="10" />
+    <Property Name="Latitude" Type="numeric" Scale="15" />
+    <Property Name="Longitude" Type="numeric" Scale="15" />
+    <Property Name="UserFolder" Type="varchar" MaxLength="50" />
+    <Property Name="FuzyLocation" Type="bit" />
+    <Property Name="SourceData" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PollinatorSize">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="PollinatorType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Sponsor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="PhotoUrl" Type="varchar" MaxLength="255" />
+    <Property Name="Website" Type="varchar" MaxLength="255" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TempUserPayment">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="MembershipLevel" Type="tinyint" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="60" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="60" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="24" />
+    <Property Name="OrganizationName" Type="nvarchar" MaxLength="100" />
+    <Property Name="OrganizationName_PollinatorInfomation" Type="nvarchar" MaxLength="100" />
+    <Property Name="PollinatorSize" Type="int" Nullable="false" />
+    <Property Name="LandscapeStreet" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LandscapeCity" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LandscapeState" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="LandscapeZipcode" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="LandscapeCountry" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhotoUrl" Type="nvarchar(max)" />
+    <Property Name="YoutubeUrl" Type="nvarchar(max)" />
+    <Property Name="Website" Type="varchar" MaxLength="255" />
+    <Property Name="PollinatorType" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="BillingAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="BillingCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillingState" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillingZipcode" Type="varchar" MaxLength="15" />
+    <Property Name="PaymentFullName" Type="nvarchar" MaxLength="255" />
+    <Property Name="PaymentAddress" Type="nvarchar" MaxLength="130" />
+    <Property Name="PaymentState" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCardNumber" Type="varchar" MaxLength="24" />
+    <Property Name="Latitude" Type="numeric" Scale="15" />
+    <Property Name="Longitude" Type="numeric" Scale="15" />
+    <Property Name="UserFolder" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateProcess" Type="int" />
+    <Property Name="PaypalFormHtmlStr" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MembershipLevel" Type="tinyint" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" MaxLength="60" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="24" />
+    <Property Name="OrganizationName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PolinatorInformation_PollinatorSize">
+    <End Role="PollinatorSize" Type="PollinatorModel.Store.PollinatorSize" Multiplicity="1" />
+    <End Role="PolinatorInformation" Type="PollinatorModel.Store.PolinatorInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PollinatorSize">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PolinatorInformation">
+        <PropertyRef Name="PollinatorSize" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembershipUser">
+    <End Role="Users" Type="PollinatorModel.Store.Users" Multiplicity="1" />
+    <End Role="Memberships" Type="PollinatorModel.Store.Memberships" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Memberships">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

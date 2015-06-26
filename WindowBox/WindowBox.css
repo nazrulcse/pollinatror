@@ -1,0 +1,131 @@
+﻿/*  reset & .clear
+----------------------------*/
+
+.container * {
+    margin: 0;
+    padding: 0;
+}
+
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+
+.clear:after { clear: both }
+
+.clear { *zoom: 1 }
+
+
+/*  garden
+----------------------------*/
+
+.garden {
+    position: relative;
+}
+
+.garden .garden_list {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+    max-height: 500px;
+    overflow-y:auto ;
+    overflow-x:auto ;
+}
+.garden.active .garden_list,
+.garden.dropHover .garden_list { border-color: #ffa0a3 }
+.garden.active .garden_list { background-color: #fff8c1 }
+.garden.dropHover .garden_list { background-color: #ffa0a3 }
+
+.garden .dropped-items-summary {
+    height: 30px;
+    line-height: 26px;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    text-align: right;
+}
+
+.garden ul { 
+    padding-bottom: 10px;
+    list-style-type: none;
+    height: 100%;
+}
+
+.garden ul li {
+    position: relative;
+    display: inline-block;
+    top: -10px;
+    overflow: hidden;
+    line-height: 32px;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.garden ul li * {
+    font-size:12px;
+    font-family: Verdana;
+    color: #2988b7;
+}
+
+.garden ul li:hover {
+    border-bottom-color: #ccc;
+    cursor: pointer;
+}
+
+.garden ul li button.delete {
+    position: absolute;
+    right: 80px;
+    top: 3px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    width: 20px;
+    line-height: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 11px;
+    border: 0;
+    color: #EE5757;
+    background-color: #eee;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-transition: opacity .2s ease;
+    -moz-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
+    -ms-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+}
+
+.garden ul li:hover button.delete {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   
+     filter: alpha(opacity = 100);
+    opacity: 1;
+}
+
+.garden ul li button.delete:hover {
+    color: #fff;
+    background-color: #ffa0a3;
+}
+
+.garden ul li button.delete:active {
+    color: #fff;
+    background-color: #EE5757;
+}
+
+.item-new a {
+    cursor: move;
+}
+
+.item-existed *:not(a) { /*Disable all the child elements except hyperlinks*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity = 80);
+    opacity: 0.8;
+}
+
+.item-existed span {
+   color: black !important;
+}

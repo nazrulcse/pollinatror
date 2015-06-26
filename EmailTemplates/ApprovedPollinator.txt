@@ -1,0 +1,6 @@
+﻿Hello <%UserName%>! Welcome aboard.
+
+Your new account is approved.
+If you have any problems or questions, please reply to this email.
+
+Thanks!

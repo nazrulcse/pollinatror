@@ -1,0 +1,158 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="ShareMap.aspx.cs" Inherits="ShareMap" EnableEventValidation="false" %>
+
+<%@ Register Src="~/Controls/RegisterUser.ascx" TagName="Register" TagPrefix="uc" %>
+<%@ Register Src="~/Controls/MapViewControl.ascx" TagName="MapViewControl" TagPrefix="uc" %>
+
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>    
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/google-map.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/multiple-select.css") %>" />
+    <link href="<%= ResolveUrl("~/Content/SiteUpload.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/Scripts/iCheck/skins/all.css") %>" rel="stylesheet" type="text/css"  />
+
+    <script type="text/javascript" src="<%= ResolveUrl("~/js/jquery.multiple.select.js") %>"></script>    
+    <script src="<%= ResolveUrl("~/Scripts/AjaxFileupload.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/Scripts/common.js")%>" type="text/javascript"></script>    
+
+    <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/iCheck/js/icheck.js") %>"></script>      
+    <script type="text/javascript" src="<%= ResolveUrl("~/js/jquery.zclip.js") %>"></script>
+
+    <script type="text/javascript">
+        window._skel_config = {
+            prefix: '<%= ResolveUrl("~/css/style")%>',
+            preloadStyleSheets: true,
+            resetCSS: true,
+            boxModel: 'border',
+            grid: { gutters: 30 },
+            breakpoints: {
+                wide: { range: '1200-', containers: 1140, grid: { gutters: 50 } },
+                narrow: { range: '481-1199', containers: 960 },
+                mobile: { range: '-480', containers: 960 }
+            }
+        };
+    </script>
+    <script src="<%= ResolveUrl("~/js/config.js") %>" type="text/javascript"></script>
+    <script src="<%= ResolveUrl("~/js/skel.min.js") %>" type="text/javascript"></script>
+    <noscript>
+        <link rel="stylesheet" href="<%= ResolveUrl("~/css/skel-noscript.css")%>" />
+    </noscript>
+    <script type="text/javascript" language="javascript">
+
+        // This variable will be used in javascript to determer root path on server
+        var rootServerPath = '<%=ResolveUrl("~")%>';
+
+        $(document).ready(function () {
+            var Chrome = false;
+            if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+                Chrome = true;
+              //  $('.registerSelect').addClass('dropdownlist');
+            }
+            else if (navigator.userAgent.toLowerCase().indexOf('mozilla') > -1) {
+              //  $('.registerSelect').addClass('dropdownlistFirefox');
+            }
+            $('.registerSelect').addClass('dropdownlist');
+
+            //new line when Enter press
+            $('textarea').keypress(function (e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    var position = this.selectionStart;
+                    var curValue = $(this).val();
+                    var newvalue = [curValue.slice(0, position), '\r\n', curValue.slice(position)].join('');
+                    $(this).val(newvalue);
+                    $(this).selectRange(position + 1);
+                }
+            });
+
+            $.fn.selectRange = function (start, end) {
+                if (!end) end = start;
+                return this.each(function () {
+                    if (this.setSelectionRange) {
+                        this.focus();
+                        this.setSelectionRange(start, end);
+                    } else if (this.createTextRange) {
+                        var range = this.createTextRange();
+                        range.collapse(true);
+                        range.moveEnd('character', end);
+                        range.moveStart('character', start);
+                        range.select();
+                    }
+                });
+            };
+            //end new line
+
+            $('a#copyembedcode').zclip({
+                path: '<%= ResolveUrl("Scripts/ZeroClipboard.swf")%>',
+                copy: function () { return $('#embedcode').text(); },
+                beforeCopy: function () {
+                    $('#embedcode').css('background', '#cc0');
+                    $(this).removeClass("btn24");
+                    $(this).addClass("btn23");
+                },
+                afterCopy: function () {
+                    $('#embedcode').css('background', '#ccf');
+                    $(this).removeClass("btn23");
+                    $(this).addClass("btn24");
+                }
+            });
+
+            //Support placeholder HTML5 for all Internet Explorer versions older than 9 
+            if ($.browser.msie && parseInt($.browser.version) <= 9) {
+                // here goes some code for all Internet Explorer versions older than 9 
+                $('[placeholder]').focus(function () {
+                    var input = $(this);
+                    if (input.val() == input.attr('placeholder')) {
+                        input.val('');
+                        input.removeClass('placeholder');
+                    }
+                }).blur(function () {
+                    var input = $(this);
+                    if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                        input.addClass('placeholder');
+                        input.val(input.attr('placeholder'));
+                    }
+                }).blur().parents('form').submit(function () {
+                    $(this).find('[placeholder]').each(function () {
+                        var input = $(this);
+                        if (input.val() == input.attr('placeholder')) {
+                            input.val('');
+                        }
+                    })
+                });
+            }
+        });
+
+
+    </script>
+
+
+    <div id="main-wrapper" style="padding-top: 0px; padding-bottom: 0px; ">
+        <div class="container">
+            <div class="row" style="width:1000px">
+                <div style="font-size:20px">
+                    <img src="<%=ResolveUrl("~/Images/logo/SHARElogoTextFINAL.jpg")%>" style="margin-left:400px; margin-bottom:50px">
+                    <p>Register your pollinator habitat below. It's free and easy! You can also explore other pollinator friendly S.H.A.R.E. landscapes from all over the globe!</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <uc:MapViewControl ID="MapViewControl" runat="server" />
+            </div>
+        </div>
+
+        <a name="register-form"></a>
+   
+        <uc:Register ID="Register1" runat="server" />
+
+    </div>
+
+    <a href="#x" class="overlay" id="embed_popup"></a>
+    <div id="embedpopup" class="popup" style="width: 510px; height: 210px">
+        <h4>Embed Code</h4>
+        <div contenteditable="true" id="embedcode" style="line-height: 150%; border: 1px solid #ccc; padding: 5px; width: 480px; height: 90px; font-family: monospace; white-space: pre; font-size: 12px; display: block">&lt;iframe width="560" height="315" src="<%=Request.Url.GetLeftPart(UriPartial.Authority) +ResolveUrl("~/MapWidget")%>" frameborder="0"&gt;&lt;/iframe&gt;</div>
+        <p style="text-align: center; padding: 10px 0"><a id="copyembedcode" href="#x" style="min-width: 200px; color: #fff; font-size: 14px; font-family: Arial;" class="submit button btn24">Copy to Clipboard</a></p>
+        <a class="popup-close" href="#close"></a>
+    </div>
+
+
+</asp:Content>

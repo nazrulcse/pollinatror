@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="WindowBoxLayout.master.cs" Inherits="WindowBox_WindowBoxLayout" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link href="WindowBox.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+    <link href="../css/bootstrap-modal.css" rel="stylesheet" />
+    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+    
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" />
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <style type="text/css">
+            .col_left {
+                width:250px;
+                background-color: orange;
+                padding:10px;
+            }
+
+            .col_main {
+                display: block;
+                position: absolute;
+                height:auto;
+                bottom:0;
+                top:0;
+                left:250px;
+                right:0;
+            }
+        </style>
+                
+        <table  width="100%" style="margin-top:0">
+            <tr>
+                <td class="col_left" style="vertical-align: top;padding:5px;">
+                    <asp:ContentPlaceHolder id="LeftColumn" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+                <td style="padding:0;">
+                    <asp:ContentPlaceHolder id="MainColumn" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
